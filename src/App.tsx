@@ -38,7 +38,10 @@ function App() {
   };
 
   const [counter, setCounter] = useState(0);
-  const onChange: CheckboxProps["onChange"] = (e, id) => {
+  const onChange: CheckboxProps["onChange"] = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    id: string
+  ) => {
     setCheckedItems((prev) => ({ ...prev, [id]: e.target.checked }));
     setCounter((prev) => (e.target.checked ? prev + 1 : prev - 1));
   };
