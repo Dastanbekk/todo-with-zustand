@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+
 export interface DataType {
   id: string;
   text: string;
@@ -9,7 +10,7 @@ export interface DataType {
 interface StoreState {
   data: DataType[];
   addData: (newItem: DataType) => void;
-  removeData: (id: DataType) => void;
+  removeData: (id: string) => void; 
   editData: (id: string, newText: string) => void;
 }
 
@@ -20,8 +21,8 @@ export const useStore = create<StoreState>()(
       addData: (newItem) => {
         set({ data: [...get().data, newItem] });
       },
-      removeData: (id) => {
-        set({ data: get().data.filter((item: DataType) => item.id !== id) });
+      removeData: (id: string) => { 
+        set({ data: get().data.filter((item) => item.id !== id) });
       },
       editData: (id, newText) => {
         set({
